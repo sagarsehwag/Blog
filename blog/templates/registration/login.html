@@ -1,0 +1,36 @@
+{% extends 'blog/base.html' %} {% block content %}
+
+
+<div class="ui center aligned grid">
+    <div class="eight wide column">
+        <div class="ui segment">
+            {% if form.error %}
+            <p>Your username & password doesn't match! Please try again</p>
+            {% endif %}
+            <form class="ui form" action="{% url 'login' %}" method="POST">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="username">Username:</label>
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+
+                <input class="ui fluid primary button" type="submit" value="Login">
+                <input type="hidden" name="next" value="{{ next }}">
+            </form>
+        </div>
+        <div class="ui eight wide column">
+            <div class="ui center aligned segment">
+                New to us?
+                <a href="mainapp:register">Sign Up</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

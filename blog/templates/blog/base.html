@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Semantic UI -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css" />
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+
+    <!-- Medium Style Editor -->
+    <script src="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/js/medium-editor.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/medium-editor@latest/dist/css/medium-editor.min.css" type="text/css"
+        media="screen" charset="utf-8">
+
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <div class="ui menu">
+        <div class="ui container">
+            <div class="header item">
+                Our Blog
+            </div>
+            <a href="{% url 'post_list' %}" class="item">
+                Home
+            </a>
+            <a href="{% url 'about' %}" class="item">
+                About Us
+            </a>
+            <a href="http://www.github.com/sagarsehwag" class="item">
+                Github
+            </a>
+            <a href="" class="item">
+                LinkedIn
+            </a>
+
+            <div class="right menu">
+                {% if user.is_authenticated %}
+                <a href="{% url 'post_new' %}" class="item">New Post</a>
+                <a href="{% url 'drafts_list' %}" class="item">Drafts</a>
+                <a href="{% url 'logout' %}" class="item">Logout</a>
+                <a href="" class="item">Welcome: {{ user.username }}</a>
+
+
+                {% else %}
+                <a class="item">Sign Up</a>
+                <a href="{% url 'login' %}" class="item">Login</a>
+
+
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Content Block -->
+    <div class="ui container">
+        {% block content %} {% endblock %}
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+</body>
+
+</html>

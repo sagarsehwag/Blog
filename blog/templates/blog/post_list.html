@@ -1,0 +1,19 @@
+{% extends "base.html" %} {% block content %}
+
+<div class="ui centered">
+    {% for post in post_list %}
+    <div class="ui segment">
+        <div class="post">
+            <h1>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            </h1>
+            <div class="date">
+                <p>Published On: {{ post.published_date|date:"D M Y"}}</p>
+            </div>
+            <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
